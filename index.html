@@ -30,6 +30,101 @@
                                 <span class="badge text-bg-danger text-wrap">Belly Cubley</span>
                             </div>
 
+                            <div class="calc-display rounded p-3 mb-3">
+                                <div id="historyLine" class="calc-history text-end small"></div>
+                                <div id="displayLine" class="calc-main text-end fw-semibold">0</div>
+                                <div id="statusLine" class="calc-status small mt-1"></div>
+                            </div>
+                            <div class="container-fluid px-0">
+                                <div class="row g-2 mb-2">
+                                    <div class="col-3">
+                                        <button class="btn btn-outline-danger w-100" onclick="clearAll()">C</button>
+                                    </div>
+                                                                        <div class="col-3">
+                                        <button class="btn btn-outline-secondary w-100" onclick="backspace()">&#9003</button>
+                                    </div>
+                                                                        <div class="col-3">
+                                        <button class="btn btn-outline-secondary w-100" onclick="toggleSign()">+/-</button>
+                                    </div>
+                                                                        <div class="col-3">
+                                        <button class="btn btn-outline-primary w-100" onclick="pressOperator('/')">&#x00F7</button>
+                                    </div>
+                                </div>
+
+                                <div class="row g-2 mb-2">
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('7')">7</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('8')">8</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('9')">9</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-outline-primary w-100" onclick="pressOperator('*')">x</button>
+                                    </div>
+                                </div>
+
+                                <div class="row g-2 mb-2">
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('4')">4</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('5')">5</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('6')">6</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-outline-primary w-100" onclick="pressOperator('-')">-</button>
+                                    </div>
+                                </div>
+
+                                <div class="row g-2 mb-2">
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('1')">1</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('2')">2</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('3')">3</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-outline-primary w-100" onclick="pressOperator('+')">+</button>
+                                    </div>
+                                </div>
+
+                                <div class="row g-2 mb-2">
+
+                                    <div class="col-6">
+                                        <button class="btn btn-light w-100" onclick="pressNumber('0')">0</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-light w-100" onclick="pressDecimal()">.</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <button class="btn btn-success w-100" onclick="calculate()">=</button>
+                                    </div>
+                                </div>
+                                </div>
+
+                            <p class="text-center small text-muted mt-3 mb-0">Belly Cubley 2026</p>
                         </div>
                     </div>
                 </div>
