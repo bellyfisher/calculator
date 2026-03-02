@@ -31,11 +31,11 @@ function updateScreen () {
   const history = document.getElementById('historyLine')
   const status = document.getElementById('statusLine')
 
- if (typedNumberText !== '') {
+  if (typedNumberText !== '') {
     display.textContent = typedNumberText
- } else {
+  } else {
     display.textContent = '0'
- }
+  }
 
   if (historyParts.length === 0) {
     history.textContent = ''
@@ -47,11 +47,15 @@ function updateScreen () {
     history.textContent = historyParts[0] + ' ' + showSymbol(historyParts[1])
   }
   if (historyParts.length === 3) {
-    history.textContent = historyParts[0] + ' ' + showSymbol(historyParts[1]) + ' ' + historyParts[2]
+    history.textContent =
+      historyParts[0] +
+      ' ' +
+      showSymbol(historyParts[1]) +
+      ' ' +
+      historyParts[2]
   }
 
-    if (status.textContent === '') status.textContent = 'Ready!'
-
+  if (status.textContent === '') status.textContent = 'Ready!'
 }
 
 function pressNumber (digit) {
@@ -66,12 +70,12 @@ function pressNumber (digit) {
 
 function pressOperator (operator) {
   setStatus('')
-
+  // If nothing typed and nothing stored, do nothing
   if (typedNumberText === '' && storedNumber === null) {
     setStatus('Please type a number first!')
     updateScreen()
   }
-
+  // FIRST operator press: store first number
   if (storedNumber === null) {
     storedNumber = Number(typedNumberText)
     currentOperator = operator
@@ -79,12 +83,34 @@ function pressOperator (operator) {
     typedNumberText = ''
     updateScreen()
   }
-
+  // if second number was typed, calculate immediately
   if (typedNumberText !== '') {
     const secondNumber = typedNumberText
+    //Cant Divide by Zero
+    if (currentOperator === '/' && secondNumber === 0) {
+      setStatus('Cannot divide by 0!')
+      updateScreen()
+      return
+    }
+  }
+
+   let result = storedNumber
+
+  if (currentOperator === '+') {
+    result = storedNumber + secondNumber
+  } else if (currentOperator === '-') {
+    result = storedNumber - secondNumber
+  } else if (currentOperator === '*') {
+    result = storedNumber * secondNumber
+  } else if (currentOperator === '/') {
+    result = storedNumber / secondNumber
+  }
+
+storedNumber = result
+currentOperator = operator
+
 }
-}
-//------------------------
+
 function clearAll () {
   typedNumberText = ''
   storedNumber = null
@@ -92,5 +118,34 @@ function clearAll () {
   historyParts = []
 
   setStatus('Cleared!')
+  updateScreen()
+}
+
+function calculate () {
+ setStatus('')
+  if (storedNumber === null || currentOperator === '' || typedNumberText === '') {
+  setStatus('Please complete the operation!')
+  updateScreen()
+  return
+  }
+
+  const secondNumber = Number(typedNumberText)
+    historyParts = [String(storedNumber), currentOperator, String(secondNumber)]
+  let result = storedNumber
+
+  if (currentOperator === '+') {
+    result = storedNumber + secondNumber
+  } else if (currentOperator === '-') {
+    result = storedNumber - secondNumber
+  } else if (currentOperator === '*') {
+    result = storedNumber * secondNumber
+  } else if (currentOperator === '/') {
+    result = storedNumber / secondNumber
+  }
+
+  storedNumber = result
+  currentOperator = ''
+  typedNumberText = ''
+  setStatus('Finished!')
   updateScreen()
 }
